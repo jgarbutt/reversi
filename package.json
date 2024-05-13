@@ -1,0 +1,28 @@
+{
+  "name": "reversi",
+  "version": "0.0.1",
+  "description": "This is a web version of the game reversi",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgarbutt/reversi.git"
+  },
+  "keywords": [
+    "reversi",
+    "jgarbutt",
+    "hci"
+  ],
+  "author": "Jessie Garbutt",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jgarbutt/reversi/issues"
+  },
+  "homepage": "https://github.com/jgarbutt/reversi#readme",
+  "dependencies": {
+    "node-static": "^0.7.11",
+    "socket.io": "^4.7.5"
+  }
+}
