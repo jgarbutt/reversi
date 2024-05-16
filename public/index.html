@@ -10,9 +10,68 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <style>
+      body {
+        background-color: rgb(33, 103, 189);
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, world! This is reversi about to change the world.</h1>
+    <div class="container-fuild">
+      <div class="row m-3">
+        <div class="col text-center">
+          <a class="btn btn-success text-nowrap" href="about.html">About</a>
+        </div>
+        <div class="col text-center">
+          <a
+            class="btn btn-success text-nowrap"
+            href="https://en.wikipedia.org/wiki/Reversi"
+            >Rules</a
+          >
+        </div>
+      </div>
+      <div class="row m-3">
+        <div class="col text-center">
+          <img
+            class="img-fluid"
+            src="assets/images/top-sp.png"
+            alt="Reversi Logo 1"
+          />
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center m-3">
+        <div class="col-8">
+          <div class="input-group">
+            <span class="input-group-text" id="displayName">Name</span>
+            <input
+              type="'text"
+              class="form-control text-nowrap"
+              id="nameInput"
+              placeholder="Choose your display name"
+              aria-label="Enter your display name for use while playing reversi"
+              aria-describedby="displayName"
+            />
+            <button
+              type="submit"
+              class="btn btn-primary text-nowrap"
+              id="lobbyButton"
+              onclick="window.location='lobby.html'"
+            >
+              Enter Lobby
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row m-3">
+        <img
+          src="assets/images/bottom-sp.png"
+          alt="Reversi Logo 2"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
