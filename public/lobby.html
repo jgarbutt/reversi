@@ -14,6 +14,19 @@
       .headerrow {
         background-color: rgb(33, 103, 189);
       }
+
+      .join_room_response{
+        background-color: rgb(136, 176, 224);
+        margin: 1px 1px 1px 1px;
+        padding: 5px;
+        
+      }
+      .chat_message{
+        font-size: 125%;
+        color:  rgb(33, 103, 189);
+        margin: 1px 1px 1px 1px;
+        padding: 5px;
+      }
     </style>
   </head>
   <body>
@@ -25,6 +38,25 @@
       </div>
       <div class="row m-3">
         <div class="col">
+          <div class="row align-items-center justify-content-center m-3">
+            <div class="col-8">
+              <div class="input-group">
+                <input
+                  type="'text"
+                  class="form-control text-nowrap"
+                  id="chatMessage"
+                  placeholder="Enter your message here"
+                  aria-label="Enter your message to send to the chat room"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-primary text-nowrap"
+                  id="chatbutton"
+                  onclick="sendChatMessage()"
+                >
+                  Send
+                </button>
+              </div>
           <h4>Messages</h4>
           <div id="messages"></div>
         </div>
