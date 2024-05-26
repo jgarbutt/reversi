@@ -15,12 +15,6 @@
         background-color: rgb(33, 103, 189);
       }
     </style>
-    <script>
-      function goToLobby() {
-        let username = encodeURIComponent($("#nameInput").val());
-        window.location.href = "lobby.html?username=" + username;
-      }
-    </script>
   </head>
   <body>
     <div class="container-fuild">
@@ -88,5 +82,18 @@
       integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function goToLobby() {
+        let username = encodeURIComponent($("#nameInput").val());
+        window.location.href = "lobby.html?username=" + username;
+      }
+      $("#nameInput").keypress(function (e) {
+        let key = e.which;
+        if (key == 13) {
+          $("button[id=lobbyButton]").click();
+          return false;
+        }
+      });
+    </script>
   </body>
 </html>
