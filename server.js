@@ -734,7 +734,7 @@ function send_game_update(socket, game_id, message) {
   let count = 0;
   for (let row = 0; row < 8; row++) {
     for (let column = 0; column < 8; column++) {
-      if (games[games_id].board[row][column != ' ']) {
+      if (games[game_id].board[row][column] != ' ') {
         count++;
       }
     }
