@@ -33,4 +33,7 @@ table#game_board td{
   padding: 0px;
 }
 
+td.hovered_over:hover {
+  background-image: url('/assets/images/hover.gif');
 
+}
