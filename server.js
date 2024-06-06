@@ -644,12 +644,12 @@ io.on("connection", (socket) => {
     if (color === 'white') {
       game.board[row][column] = 'w';
       game.whose_turn = 'black';
-      game.legal_moves = calculate_legal_moves('b', game_board);
+      game.legal_moves = calculate_legal_moves('b', game.board);
     }
     else {
       game.board[row][column] = 'b';
       game.whose_turn = 'white';
-      game.legal_moves = calculate_legal_moves('w', game_board);
+      game.legal_moves = calculate_legal_moves('w', game.board);
     }
 
     send_game_update(socket, game_id, 'played a token');
@@ -694,6 +694,10 @@ function create_new_game() {
 function check_line_match(color, dr, dc, r, c, board) {
   if (board[r][c] === color) {
     return true;
+  }
+
+  if (board[r][c] === ' ') {
+    return false;
   }
 
   //check to make sure we aren't going to walk off the board
