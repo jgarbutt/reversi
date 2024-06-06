@@ -28,6 +28,7 @@ table#game_board{
 }
 
 table#game_board td{
+  background-color:rgb(132, 185, 248);
   border: 1px solid black;
   margin: 0px;
   padding: 0px;
