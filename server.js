@@ -643,11 +643,13 @@ io.on("connection", (socket) => {
     /* execute the move */
     if (color === 'white') {
       game.board[row][column] = 'w';
+      flip_tokens('w', row, column, game.board);
       game.whose_turn = 'black';
       game.legal_moves = calculate_legal_moves('b', game.board);
     }
     else {
       game.board[row][column] = 'b';
+      flip_tokens('b', row, column, game.board);
       game.whose_turn = 'white';
       game.legal_moves = calculate_legal_moves('w', game.board);
     }
@@ -786,6 +788,45 @@ function calculate_legal_moves(who, board) {
   return legal_moves;
 };
 
+function flip_line(who, dr, dc, r, c, board) {
+  if ((r + dr < 0) || (r + dr > 7)) {
+    return false
+  }
+  if ((c + dc < 0) || (c + dc > 7)) {
+    return false
+  }
+
+  if (board[r + dr][c + dc] === ' ') {
+    return false;
+  }
+  if (board[r + dr][c + dc] === who) {
+    return true;
+  }
+  else {
+    if (flip_line(who, dr, dc, r + dr, c + dc, board)) {
+      board[r + dr][c + dc] = who;
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}
+
+function flip_tokens(who, row, column, board) {
+  flip_line(who, -1, -1, row, column, board);
+  flip_line(who, -1, 0, row, column, board);
+  flip_line(who, -1, 1, row, column, board);
+
+
+  flip_line(who, 0, -1, row, column, board);
+  flip_line(who, 0, 1, row, column, board);
+
+  flip_line(who, 1, -1, row, column, board);
+  flip_line(who, 1, 0, row, column, board);
+  flip_line(who, 1, 1, row, column, board);
+}
+
 
 
 function send_game_update(socket, game_id, message) {
@@ -858,20 +899,36 @@ function send_game_update(socket, game_id, message) {
     }
   })
   /* Check if the game is over */
-  let count = 0;
+  let legal_moves = 0;
+  let whitesum = 0;
+  let blacksum = 0;
+
   for (let row = 0; row < 8; row++) {
     for (let column = 0; column < 8; column++) {
-      if (games[game_id].board[row][column] != ' ') {
-        count++;
+      if (games[game_id].legal_moves[row][column] !== ' ') {
+        legal_moves++;
+      }
+      if (games[game_id].board[row][column] === 'w') {
+        whitesum++;
+      }
+      if (games[game_id].board[row][column] === 'b') {
+        blacksum++;
       }
     }
   }
-  if (count === 64) {
+  if (legal_moves === 0) {
+    let winner = "Tie Game";
+    if (whitesum > blacksum) {
+      winner = "white";
+    }
+    if (whitesum < blacksum) {
+      winner = "black";
+    }
     let payload = {
       result: 'success',
       game_id: game_id,
       game: games[game_id],
-      who_won: 'everyone'
+      who_won: winner
     }
     io.in(game_id).emit('game_over', payload);
 
