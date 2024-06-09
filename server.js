@@ -338,7 +338,7 @@ io.on("connection", (socket) => {
 
   socket.on("game_start", (payload) => {
     serverLog(
-      "Server recieved a commmand",
+      "Server received a commmand",
       "'game_start'",
       JSON.stringify(payload)
     );
@@ -525,12 +525,12 @@ io.on("connection", (socket) => {
   socket.on("play_token", (payload) => {
     serverLog(
       "Server recieved a commmand",
-      "'play_token'",
+      "\'play_token\'",
       JSON.stringify(payload)
     );
     /* Check that the data coming from the client is good */
     if (typeof payload == "undefined" || payload === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "client did not send a payload";
       socket.emit("play_token_response", response);
@@ -539,7 +539,7 @@ io.on("connection", (socket) => {
     }
     let player = players[socket.id];
     if (typeof player == "undefined" || player === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "play_token came from an unregistered player ";
       socket.emit("play_token_response", response);
@@ -549,7 +549,7 @@ io.on("connection", (socket) => {
 
     let username = player.username;
     if (typeof username == "undefined" || username === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message =
         "play_token command did not come from a registered username";
@@ -560,7 +560,7 @@ io.on("connection", (socket) => {
 
     let game_id = player.room;
     if (typeof game_id == "undefined" || game_id === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "there was no valid game associated with the play_token command";
       socket.emit("play_token_response", response);
@@ -570,7 +570,7 @@ io.on("connection", (socket) => {
 
     let row = payload.row;
     if (typeof row == "undefined" || row === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "there was no valid row associated with the play_token command";
       socket.emit("play_token_response", response);
@@ -579,7 +579,7 @@ io.on("connection", (socket) => {
     }
     let column = payload.column;
     if (typeof column == "undefined" || column === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "there was no valid column associated with the play_token command";
       socket.emit("play_token_response", response);
@@ -589,7 +589,7 @@ io.on("connection", (socket) => {
 
     let color = payload.color;
     if (typeof color == "undefined" || color === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "there was no valid color associated with the play_token command";
       socket.emit("play_token_response", response);
@@ -599,7 +599,7 @@ io.on("connection", (socket) => {
 
     let game = games[game_id];
     if (typeof game == "undefined" || game === null) {
-      response = {};
+      let response = {};
       response.result = "fail";
       response.message = "there was no valid game associated with the play_token command";
       socket.emit("play_token_response", response);
@@ -704,10 +704,10 @@ function check_line_match(color, dr, dc, r, c, board) {
 
   //check to make sure we aren't going to walk off the board
   if ((r + dr < 0) || (r + dr > 7)) {
-    return false
+    return false;
   }
   if ((c + dc < 0) || (c + dc > 7)) {
-    return false
+    return false;
   }
 
   return (check_line_match(color, dr, dc, r + dr, c + dc, board));
