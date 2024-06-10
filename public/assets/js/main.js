@@ -272,7 +272,7 @@ socket.on("send_chat_message_response", (payload) => {
   let newHTML =
     "<p class='chat_message'><b>" +
     payload.username +
-    "</b>:" +
+    "</b>: " +
     payload.message +
     "</p>";
   let newNode = $(newHTML);
